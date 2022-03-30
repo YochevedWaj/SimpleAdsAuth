@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+        @foreach (var vm in Model.AdViewModels)
+        {
+            <div class="jumbotron">
+                <h5>Listed by @vm.Ad.Name</h5>
+                <h5>Listed on @vm.Ad.Date.ToLongDateString()</h5>
+                <h5>Phone Number: @vm.Ad.Number</h5>
+                <h3>Details</h3>
+                <p>@vm.Ad.Description</p>
+                @if (vm.CanDelete)
+                {
+                    <form method="post" action="/home/deletead">
+                        <input type="hidden" name="id" value="@vm.Ad.ID" />
+                        <input type="hidden" name="currentPage" value="index" />
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                }
+            </div>
+        }
+    </div>
+</div>
